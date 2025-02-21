@@ -1,6 +1,5 @@
 /target
 Cargo.lock
-blockchain.json
 .env
 .env.local
 .env.development

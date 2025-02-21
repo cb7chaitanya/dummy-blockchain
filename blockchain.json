@@ -1,0 +1,25 @@
+{
+  "blocks": [
+    {
+      "timestamp": 1740158923,
+      "transactions": [],
+      "previous_hash": "0",
+      "nonce": 0,
+      "hash": "81f9d56172cd731fc806c53dc0063dee25144a9cccae251526e37085539f1080"
+    },
+    {
+      "timestamp": 1740158977,
+      "transactions": [
+        {
+          "sender": "H2ZFj5AwnN18iCqMgXsuohgU5GWTmEEJ6ahtE1es5F8C",
+          "recipient": "244i61qMoK7whdDaKtu6WXwJppJDCLP2twupSfRA6G3d",
+          "amount": 0.2
+        }
+      ],
+      "previous_hash": "81f9d56172cd731fc806c53dc0063dee25144a9cccae251526e37085539f1080",
+      "nonce": 132,
+      "hash": "00dc7c4db559a607f2f1d3efac87365a7d67388eb85d19af190401e2ce2e5cc9"
+    }
+  ],
+  "difficulty": 2
+}
