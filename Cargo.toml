@@ -5,9 +5,11 @@ edition = "2021"
 
 [dependencies]
 actix-web = "4"
+actix-cors = "0.6.4"
 chrono = "0.4"
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 sha2 = "0.9"
-tokio = { version = "1", feature = ["full"] }
-actix-cors = "0.6.4"
+tokio = { version = "1", features = ["full"] }
+dotenv = "0.15.0"
+env_logger = "0.10.0"

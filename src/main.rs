@@ -6,6 +6,9 @@ use sha2::{Sha256, Digest};
 use actix_web::{web, App, HttpResponse, HttpServer, Responder};
 use actix_cors::Cors;
 use actix_web::middleware::Logger;
+use std::env;
+use dotenv::dotenv;
+use env_logger;
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 struct Transaction {
@@ -120,6 +123,15 @@ async fn add_block(data: web::Data<Arc<AppState>>, transactions: web::Json<Vec<T
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
+    // Load .env file if it exists
+    dotenv().ok();
+
+    // Enable logging
+    env_logger::init_from_env(env_logger::Env::new().default_filter_or("info"));
+
+    let port = env::var("PORT").unwrap_or_else(|_| "8080".to_string());
+    let host = env::var("HOST").unwrap_or_else(|_| "0.0.0.0".to_string());
+    let address = format!("{}:{}", host, port);
 
     let filename = "blockchain.json";
     let blockchain = if let Ok(blockchain) = Blockchain::load_from_file(filename) {
@@ -134,7 +146,7 @@ async fn main() -> std::io::Result<()> {
 
     let app_state_clone = Arc::clone(&app_state);
 
-    println!("Starting blockchain server on port 8080");
+    println!("Starting blockchain server on {}", address);
 
     HttpServer::new(move || {
         let cors = Cors::permissive();
@@ -146,7 +158,7 @@ async fn main() -> std::io::Result<()> {
             .route("/chain", web::get().to(get_chain))
             .route("/add_block", web::post().to(add_block))
     })
-    .bind("127.0.0.1:8080")?
+    .bind(&address)?
     .run()
     .await?;
 
