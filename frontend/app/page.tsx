@@ -23,7 +23,7 @@ interface Blockchain {
 }
 
 async function getBlockchain(): Promise<Blockchain> {
-  const response = await fetch('http://localhost:8080/chain', { 
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/chain`, { 
     cache: 'no-store'
   });
   if (!response.ok) {
@@ -41,7 +41,7 @@ async function addTransaction(formData: FormData) {
     amount: parseFloat(formData.get('amount') as string)
   };
 
-  const response = await fetch('http://localhost:8080/add_block', {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/add_block`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
