@@ -8,7 +8,6 @@ RUN cargo build --release
 FROM debian:bookworm-slim
 
 COPY --from=builder /usr/src/app/target/release/blockchain /usr/local/bin/blockchain
-COPY --from=builder /usr/src/app/blockchain.json /usr/local/bin/blockchain.json
 
 ENV PORT=8080
 EXPOSE 8080
